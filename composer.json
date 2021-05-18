@@ -1,0 +1,55 @@
+{
+    "name": "inisiatif/enqueue",
+    "description": "Enqueue package using in Inisiatif Zakat Indonesia",
+    "license": "proprietary",
+    "type": "library",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.packagist.com/inisiatif/"
+        },
+        {
+            "packagist.org": false
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "ext-json": "*",
+        "enqueue/amqp-lib": "^0.10",
+        "enqueue/enqueue": "^0.10",
+        "enqueue/laravel-queue": "^0.10",
+        "enqueue/null": "^0.10",
+        "enqueue/simple-client": "^0.10",
+        "illuminate/config": "^7.30|^8.26",
+        "illuminate/console": "^7.30|^8.26",
+        "illuminate/log": "^7.30|^8.26",
+        "illuminate/queue": "^7.30|^8.26",
+        "php-amqplib/php-amqplib": "^3.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.3.1",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Inisiatif\\Package\\Enqueue\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Inisiatif\\Package\\Enqueue\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
