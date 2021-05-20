@@ -15,6 +15,9 @@ use Enqueue\LaravelQueue\Command\SetupBrokerCommand;
 
 final class EnqueueServiceProvider extends ServiceProvider
 {
+    /**
+     * @psalm-suppress UndefinedInterfaceMethod
+     */
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/enqueue.php', 'enqueue');
