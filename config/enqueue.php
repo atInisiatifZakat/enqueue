@@ -12,5 +12,9 @@ return [
             'router_queue' => 'default',
             'default_queue' => 'default',
       ],
+      'extensions' => [
+          'signal_extension' => true,
+          'reply_extension' => false
+      ]
     ]
 ];
