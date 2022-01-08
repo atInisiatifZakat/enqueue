@@ -13,17 +13,17 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "~8.0",
         "ext-json": "*",
         "enqueue/amqp-lib": "^0.10",
         "enqueue/enqueue": "^0.10",
         "enqueue/laravel-queue": "^0.10",
         "enqueue/null": "^0.10",
         "enqueue/simple-client": "^0.10",
-        "illuminate/config": "^7.30|^8.26",
-        "illuminate/console": "^7.30|^8.26",
-        "illuminate/log": "^7.30|^8.26",
-        "illuminate/queue": "^7.30|^8.26",
+        "illuminate/config": "^8.26",
+        "illuminate/console": "^8.26",
+        "illuminate/log": "^8.26",
+        "illuminate/queue": "^8.26",
         "php-amqplib/php-amqplib": "^3.0"
     },
     "require-dev": {
