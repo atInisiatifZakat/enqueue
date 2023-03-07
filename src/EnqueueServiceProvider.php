@@ -9,10 +9,6 @@ use Psr\Log\LoggerInterface;
 use Enqueue\SimpleClient\SimpleClient;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Config\Repository;
-use Enqueue\LaravelQueue\Command\RoutesCommand;
-use Enqueue\LaravelQueue\Command\ConsumeCommand;
-use Enqueue\LaravelQueue\Command\ProduceCommand;
-use Enqueue\LaravelQueue\Command\SetupBrokerCommand;
 
 final class EnqueueServiceProvider extends ServiceProvider
 {
@@ -40,14 +36,5 @@ final class EnqueueServiceProvider extends ServiceProvider
 
             return new SimpleClient($configs, $logger);
         });
-
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                SetupBrokerCommand::class,
-                ProduceCommand::class,
-                RoutesCommand::class,
-                ConsumeCommand::class,
-            ]);
-        }
     }
 }
