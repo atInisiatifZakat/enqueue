@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Inisiatif\Package\Enqueue;
 
+use Illuminate\Support\Arr;
 use Psr\Log\LoggerInterface;
 use Enqueue\SimpleClient\SimpleClient;
 use Illuminate\Support\ServiceProvider;
@@ -33,7 +34,11 @@ final class EnqueueServiceProvider extends ServiceProvider
             /** @var LoggerInterface $logger */
             $logger = $this->app->make('log');
 
-            return new SimpleClient($config->get('enqueue.client'), $logger);
+            $configs = \array_merge(Arr::only($config->get('enqueue'), ['transport', 'extensions']), [
+                'client' => $config->get('enqueue.client.default')
+            ]);
+
+            return new SimpleClient($configs, $logger);
         });
 
         if ($this->app->runningInConsole()) {
