@@ -31,7 +31,7 @@ final class EnqueueServiceProvider extends ServiceProvider
             $logger = $this->app->make('log');
 
             $configs = \array_merge(Arr::only($config->get('enqueue'), ['transport', 'extensions']), [
-                'client' => $config->get('enqueue.client.default')
+                'client' => $config->get('enqueue.client.default'),
             ]);
 
             return new SimpleClient($configs, $logger);
