@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Inisiatif\Package\Enqueue;
 
+use Illuminate\Support\Arr;
 use Psr\Log\LoggerInterface;
 use Enqueue\SimpleClient\SimpleClient;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Config\Repository;
-use Enqueue\LaravelQueue\Command\RoutesCommand;
-use Enqueue\LaravelQueue\Command\ConsumeCommand;
-use Enqueue\LaravelQueue\Command\ProduceCommand;
-use Enqueue\LaravelQueue\Command\SetupBrokerCommand;
 
 final class EnqueueServiceProvider extends ServiceProvider
 {
@@ -33,16 +30,11 @@ final class EnqueueServiceProvider extends ServiceProvider
             /** @var LoggerInterface $logger */
             $logger = $this->app->make('log');
 
-            return new SimpleClient($config->get('enqueue.client'), $logger);
-        });
-
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                SetupBrokerCommand::class,
-                ProduceCommand::class,
-                RoutesCommand::class,
-                ConsumeCommand::class,
+            $configs = \array_merge(Arr::only($config->get('enqueue'), ['transport', 'extensions']), [
+                'client' => $config->get('enqueue.client.default'),
             ]);
-        }
+
+            return new SimpleClient($configs, $logger);
+        });
     }
 }

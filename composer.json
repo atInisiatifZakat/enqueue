@@ -17,13 +17,8 @@
         "ext-json": "*",
         "enqueue/amqp-lib": "^0.10",
         "enqueue/enqueue": "^0.10",
-        "enqueue/laravel-queue": "^0.10",
         "enqueue/null": "^0.10",
         "enqueue/simple-client": "^0.10",
-        "illuminate/config": "^9.19",
-        "illuminate/console": "^9.19",
-        "illuminate/log": "^9.19",
-        "illuminate/queue": "^9.19",
         "php-amqplib/php-amqplib": "^3.0"
     },
     "require-dev": {
