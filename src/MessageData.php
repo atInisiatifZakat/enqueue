@@ -5,12 +5,9 @@ declare(strict_types=1);
 namespace Inisiatif\Package\Enqueue;
 
 use Enqueue\Client\MessagePriority;
-use Inisiatif\Package\Common\Concerns\HasArrayHydrator;
 
 final class MessageData
 {
-    use HasArrayHydrator;
-
     public string $id;
 
     public string $app;
@@ -23,6 +20,9 @@ final class MessageData
 
     public array $headers = [];
 
+    /**
+     * @return array<string, mixed> $data
+     */
     public function body(): array
     {
         return [
@@ -30,5 +30,41 @@ final class MessageData
             'app' => $this->app,
             'data' => $this->data,
         ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'app' => $this->app,
+            'data' => $this->data,
+            'priority' => $this->priority,
+            'properties' => $this->properties,
+            'headers' => $this->headers,
+        ];
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public function fromArray(array $data): self 
+    {
+        $self = new self();
+        
+        if (!isset($data['id'], $data['app'], $data['data'])) {
+            throw new \InvalidArgumentException('Invalid message data');
+        }
+
+        $self->id = $data['id'];
+        $self->app = $data['app'];
+        $self->data = $data['data'];
+        $self->priority = $data['priority'] ?? MessagePriority::NORMAL;
+        $self->properties = $data['properties'] ?? [];
+        $self->headers = $data['headers'] ?? [];
+
+        return $self;
     }
 }

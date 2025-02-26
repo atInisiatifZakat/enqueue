@@ -3,15 +3,6 @@
     "description": "Enqueue package using in Inisiatif Zakat Indonesia",
     "license": "proprietary",
     "type": "library",
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://repo.packagist.com/inisiatif/"
-        },
-        {
-            "packagist.org": false
-        }
-    ],
     "require": {
         "php": "^8.1",
         "ext-json": "*",
@@ -19,11 +10,12 @@
         "enqueue/enqueue": "^0.10",
         "enqueue/null": "^0.10",
         "enqueue/simple-client": "^0.10",
-        "php-amqplib/php-amqplib": "^3.0"
+        "php-amqplib/php-amqplib": "^3.7"
     },
     "require-dev": {
-        "mockery/mockery": "^1.3.1",
-        "phpunit/phpunit": "^9.0"
+        "laravel/pint": "^1.21",
+        "mockery/mockery": "^1.6",
+        "orchestra/testbench": "^8.33"
     },
     "autoload": {
         "psr-4": {
@@ -34,6 +26,10 @@
         "psr-4": {
             "Inisiatif\\Package\\Enqueue\\Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "format": "vendor/bin/pint"
     },
     "config": {
         "preferred-install": "dist",
